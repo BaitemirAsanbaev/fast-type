@@ -32,10 +32,8 @@ inp.addEventListener('input', () => {
 })
 document.body.addEventListener('keydown', (event) => {
     if(event.key == " "){
-        console.log(currentWord, givenWord)
         if (currentWord == givenWord){
-            console.log("yes")
-            words.unshift(words.length -1)
+            words.pop();
             words.forEach(element => {
                 wordsDiv.innerText = element;
                 givenWord = element;

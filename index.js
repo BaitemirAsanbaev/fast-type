@@ -32,12 +32,14 @@ inp.addEventListener('input', () => {
 })
 document.body.addEventListener('keydown', (event) => {
     if(event.key == " "){
+        event.preventDefault();
         if (currentWord == givenWord){
             words.pop();
             words.forEach(element => {
                 wordsDiv.innerText = element;
                 givenWord = element;
             });
+            inp.value = '';
         }
     }
 })

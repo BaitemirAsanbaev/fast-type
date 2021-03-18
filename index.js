@@ -1,6 +1,11 @@
 let inp = document.querySelector('.inp');
 let wordsDiv = document.querySelector('.words');
-let result = document.querySelector('result');
+let result = document.querySelector('.result');
+let time = document.querySelector('.time');
+let btn = document.querySelector('.start');
+let wordsCount = 0;
+let num = 60;
+let interval;
 let words = ['level',
         'shave',
         'revoke',
@@ -27,13 +32,32 @@ words.forEach(element => {
     wordsDiv.innerText = element;
     givenWord = element;
 });
+
+
+
 inp.addEventListener('input', () => {
     currentWord = inp.value;
 })
+btn.addEventListener('click', () => {
+    num = 5;
+    setTimeout(() => {
+        result.innerText = wordsCount;
+    }, 60000);
+    interval = setInterval(() => {
+        num--;
+        time.innerText = num;
+    }, 1000);
+    if(num <= 0){
+        clearInterval(interval);
+    }
+})
+
+
 document.body.addEventListener('keydown', (event) => {
     if(event.key == " "){
         event.preventDefault();
         if (currentWord == givenWord){
+            wordsCount++;
             words.pop();
             words.forEach(element => {
                 wordsDiv.innerText = element;

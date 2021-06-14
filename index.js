@@ -27,7 +27,7 @@ let words = ['level',
         'pit',
         'slam',]
 let currentWord;
-let givenWord
+let givenWord;
 words.forEach(element => {
     wordsDiv.innerText = element;
     givenWord = element;
@@ -37,26 +37,32 @@ words.forEach(element => {
 
 inp.addEventListener('input', () => {
     currentWord = inp.value;
+
 })
 btn.addEventListener('click', () => {
-    num = 5;
+    num = 4;
     setTimeout(() => {
         result.innerText = wordsCount;
-    }, 60000);
+    }, 4000);
     interval = setInterval(() => {
         num--;
         time.innerText = num;
+        if(num <= 0){
+            clearInterval(interval)
+        }
     }, 1000);
-    if(num <= 0){
-        clearInterval(interval);
-    }
+
 })
 
 
 document.body.addEventListener('keydown', (event) => {
     if(event.key == " "){
         event.preventDefault();
+        if(currentWord!= givenWord){
+            wordsDiv.style.color = "red"
+        }
         if (currentWord == givenWord){
+            wordsDiv.style.color = "#000"
             wordsCount++;
             words.pop();
             words.forEach(element => {
@@ -65,5 +71,6 @@ document.body.addEventListener('keydown', (event) => {
             });
             inp.value = '';
         }
+
     }
 })

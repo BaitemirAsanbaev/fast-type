@@ -6,6 +6,7 @@ let btn = document.querySelector('.start');
 let wordsCount = 0;
 let num = 60;
 let interval;
+let isStarted = false;
 let words = ['level',
         'shave',
         'revoke',
@@ -40,6 +41,7 @@ inp.addEventListener('input', () => {
 
 })
 btn.addEventListener('click', () => {
+    isStarted = true;
     num = 4;
     setTimeout(() => {
         result.innerText = wordsCount;
@@ -56,21 +58,23 @@ btn.addEventListener('click', () => {
 
 
 document.body.addEventListener('keydown', (event) => {
-    if(event.key == " "){
-        event.preventDefault();
-        if(currentWord!= givenWord){
-            wordsDiv.style.color = "red"
+    if(isStarted){
+        if(event.key == " "){
+            event.preventDefault();
+            if(currentWord!= givenWord){
+                wordsDiv.style.color = "red"
+            }
+            if (currentWord == givenWord){
+                wordsDiv.style.color = "#000"
+                wordsCount++;
+                words.pop();
+                words.forEach(element => {
+                    wordsDiv.innerText = element;
+                    givenWord = element;
+                });
+                inp.value = '';
+            }
+    
         }
-        if (currentWord == givenWord){
-            wordsDiv.style.color = "#000"
-            wordsCount++;
-            words.pop();
-            words.forEach(element => {
-                wordsDiv.innerText = element;
-                givenWord = element;
-            });
-            inp.value = '';
-        }
-
     }
 })

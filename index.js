@@ -6,6 +6,8 @@ let btn = document.querySelector('.start');
 let wordsCount = 0;
 let num;
 let interval;
+let currentWord;
+let givenWord;
 let isStarted = false;
 let words = ['level',
   'shave',
@@ -26,9 +28,28 @@ let words = ['level',
   'choke',
   'marine',
   'pit',
-  'slam',]
-let currentWord;
-let givenWord;
+  'slam',
+  'level',
+  'shave',
+  'revoke',
+  'quit',
+  'sandwich',
+  'splurge',
+  'promise',
+  'problem',
+  'damn',
+  'bait',
+  'tendency',
+  'rape',
+  'edition',
+  'stable',
+  'federation',
+  'hard',
+  'choke',
+  'marine',
+  'pit',
+  'slam',];
+
 words.forEach(element => {
   wordsDiv.innerText = element;
   givenWord = element;
@@ -40,10 +61,10 @@ inp.addEventListener('input', () => {
 })
 btn.addEventListener('click', () => {
   isStarted = true;
-  num = 4;
+  num = 60;
   setTimeout(() => {
-    result.innerText = wordsCount;
-  }, 4000);
+    result.innerText = `${wordsCount} WPM`;
+  }, 60000);
   interval = setInterval(() => {
     num--;
     time.innerText = num;
